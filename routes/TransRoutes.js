@@ -4,7 +4,7 @@ const axios = require('axios');
 
 const TransactionSchema = require('../models/Transaction')
 
-//test
+
 router.get('/transactions/:address', async(req, res)=> {
     try {
         const address = req.params.address;
