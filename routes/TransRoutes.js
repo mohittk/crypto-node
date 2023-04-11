@@ -14,6 +14,7 @@ router.get('/transactions/:address', async(req, res)=> {
         const getTrxs = await axios.get(transactionUrl);
         const transactionData = getTrxs.data.result;
         // console.log(getTrxs);
+        
         if(address){
             const result = await TransactionSchema.findOne({user_address: address});
             if(result){
@@ -27,7 +28,8 @@ router.get('/transactions/:address', async(req, res)=> {
                 console.log("New Data sent");
             }
         }
-        res.json(address);
+        let getTrxsFromDB = await TransactionSchema.findOne({user_address: address});
+        return res.json(getTrxsFromDB);
 
     } catch (err){
         console.log(err);
